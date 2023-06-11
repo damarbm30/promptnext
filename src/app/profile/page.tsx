@@ -13,7 +13,8 @@ export default function MyProfile() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(`/api/users/${session?.user?.id}/posts`);
+      // const response = await fetch(`/api/users/${session?.user?.id}/posts`);
+      const response = await fetch("/api/prompt");
       const data = await response.json();
 
       setPosts(data);

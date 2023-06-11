@@ -20,11 +20,22 @@ const PromptCardList = ({ data, handleTagClick }: Props) => {
   );
 };
 
-export default function Feed({ posts }: { posts: any }) {
+export default function Feed() {
   const [searchTimeout, setSearchTimeout] = useState<NodeJS.Timeout>();
   const [searchText, setSearchText] = useState<string>("");
-
   const [searchResults, setSearchResults] = useState<any>([]);
+  const [posts, setPosts] = useState<any>([]);
+
+  const fetchPosts = async () => {
+    const response = await fetch("/api/prompt");
+    const data = await response.json();
+
+    setPosts(data);
+  };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   const filteredPrompts = (searchText: string) => {
     // case insensitive
