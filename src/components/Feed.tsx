@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 
 import PromptCard from "./PromptCard";
 
@@ -26,8 +27,10 @@ export default function Feed() {
   const [posts, setPosts] = useState<any>([]);
   const [searchResults, setSearchResults] = useState<any>([]);
 
+  const { data: session } = useSession();
+
   const fetchPosts = async () => {
-    const response = await fetch("/api/prompt", { cache: "no-store" });
+    const response = await fetch(`/api/users/${session?.user?.id}/posts`);
     const data = await response.json();
 
     setPosts(data);
