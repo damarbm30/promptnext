@@ -26,17 +26,14 @@ export default function Feed() {
   const [posts, setPosts] = useState<any>([]);
   const [searchResults, setSearchResults] = useState<any>([]);
 
+  const fetchPosts = async () => {
+    const response = await fetch("/api/prompt");
+    const data = await response.json();
+
+    setPosts(data);
+  };
+
   useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await fetch("/api/prompt");
-      const data = await response.json();
-
-      console.log("RESPONSE: ", response);
-      console.log("FETCHED DATA: ", data);
-
-      setPosts(data);
-    };
-
     fetchPosts();
   }, []);
 
@@ -81,7 +78,11 @@ export default function Feed() {
           onChange={handleSearchChange}
         />
       </form>
-      <PromptCardList data={searchText ? searchResults : posts} handleTagClick={handleTagClick} />
+      {searchText ? (
+        <PromptCardList data={searchResults} handleTagClick={handleTagClick} />
+      ) : (
+        <PromptCardList data={posts} handleTagClick={handleTagClick} />
+      )}
     </section>
   );
 }
