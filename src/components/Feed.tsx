@@ -31,6 +31,7 @@ export default function Feed() {
       const response = await fetch("/api/prompt");
       const data = await response.json();
 
+      console.log("RESPONSE: ", response);
       console.log("FETCHED DATA: ", data);
 
       setPosts(data);
