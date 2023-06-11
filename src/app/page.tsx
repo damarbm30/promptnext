@@ -1,4 +1,4 @@
-import Feed from "~/components/Feed";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -12,7 +12,9 @@ export default function Home() {
       <p className="desc text-center">
         PrompNext is an open-source AI prompting tool for modern world to discover, create and share creative prompts
       </p>
-      <Feed />
+      <Link href="/feed" className="mt-4 rounded-xl bg-primary-orange px-5 py-3 text-4xl font-bold text-white">
+        Go to Feed
+      </Link>
     </section>
   );
 }

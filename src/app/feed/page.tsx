@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-import PromptCard from "./PromptCard";
+import { PromptCard } from "~/components";
 
 type Props = {
   data: any;
