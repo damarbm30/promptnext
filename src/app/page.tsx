@@ -1,6 +1,23 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 import Feed from "~/components/Feed";
 
 export default function Home() {
+  const [posts, setPosts] = useState<any>([]);
+
+  const fetchPosts = async () => {
+    const response = await fetch("/api/prompt");
+    const data = await response.json();
+
+    setPosts(data);
+  };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
   return (
     <section className="flex-center w-full flex-col">
       <h1 className="head_text text-center">
@@ -12,7 +29,7 @@ export default function Home() {
       <p className="desc text-center">
         PrompNext is an open-source AI prompting tool for modern world to discover, create and share creative prompts
       </p>
-      <Feed />
+      <Feed posts={posts} />
     </section>
   );
 }
