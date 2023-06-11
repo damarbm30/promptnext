@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 import { Form } from "~/components";
 
-export default function createPrompt() {
+export default function CreatePrompt() {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [post, setPost] = useState<any>({
     prompt: "",
